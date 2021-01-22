@@ -120,40 +120,7 @@ INSERT INTO `BackupPacketTable` (`packet_data`, `created_at`, `status`) VALUES (
 INSERT INTO `BackupPacketTable` (`packet_data`, `created_at`, `status`) VALUES ('AAA,67,202101191941,AAF', '2021-01-19 19:42:24', '1');
     
     
-    X----------------------------------------------------------------------------------------------------------------X
-    
-    Stage 1: INSERT into 'Contacts'('battery_level', 'contacted_with_devices', 'contacted_with_employees', 'created_at', 'device_id', 'employee_id', 'recorded_at', 'updated_at') SELECT substring(packet_data, 5,2) as s1, substring(packet_data, 21,11) as s2, substring(packet_data, 5,2) as s1, substring(packet_data, 5,2) as s1, substring(packet_data, 5,2) as s1, substring(packet_data, 5,2) as s1, substring(packet_data, 5,2) as s1, substring(packet_data, 5,2) as s1,  // yet to complete
-    
-    
-    
-    
-DROP PROCEDURE IF EXISTS extracted;
-DELIMITER //
-
-CREATE PROCEDURE extracted (IN pckt_data VARCHAR(1000)) 
-	BEGIN 
-		DECLARE battery_percentage INT DEFAULT 0;  -----
-        DECLARE createdTime DATETIME DEFAULT NULL;
-        DECLARE recordedTime DATETIME DEFAULT NULL;
-        DECLARE updatedTime DATETIME DEFAULT NULL;                         
-        DECLARE deviceID TEXT DEFAULT NULL;       --------
-        DECLARE contactedDevices TEXT DEFAULT NULL;   ------
-        DECLARE contactedEmployees TEXT DEFAULT NULL; ---------
-        DECLARE employeeID TEXT DEFAULT NULL;        ---------
-                         
-		SET battery_percentage = CONVERT(substring(pckt_data,5,2), DECIMAL);
-		SET deviceID = substring(pckt_data,1,3); 
-        SET contactedDevices = substring(pckt_data, 21, 11);
-        
-        SELECT battery_percentage, deviceID, contactedDevices;
-        
-        
-    END //
-DELIMITER ;
-                         
-CALL extracted('AAB,70,202101191941,AAC,AAD,AAE');
-        
-                      
+                    
      X----------------------------------------------------------------------------------------------------------------X                    
                       
 
